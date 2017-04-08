@@ -31,5 +31,34 @@ void openDB(){
     }
 
 }
+int verification (char* login, char* password){
+    
+    sql = "SELECT Position FROM BANK_USERS WHERE Login = ? AND Password = ?";
+    
+    rc = sqlite3_prepare_v2(db, sql, -1, &res, 0);
+    
+    if (rc == SQLITE_OK){
+        sqlite3_bind_text(res, 1, login, (int)strlen(login), SQLITE_STATIC);
+        sqlite3_bind_text(res, 2, password, (int)strlen(password), SQLITE_STATIC);
+    }
+    
+    else {
+        fprintf(stderr, "Failed to execute query: %s\n", sqlite3_errmsg(db));
+    }
+    
+    if(sqlite3_step(res) == SQLITE_ROW){
+        char* position = (char*) malloc(256);
+        
+        strcpy(position, sqlite3_column_text(res, 0));
+        if (!strcmp(position, oper))
+            return 1;
+        else if (!strcmp(position, admin))
+            return 2;
+        else
+            return 0;
+    }
+    return -1;
+}
+
 
 
