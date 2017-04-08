@@ -154,6 +154,12 @@ void printClientAndAccounts(int ID){
     
     sqlite3_finalize(res);
 }
+void clientAndAccounts(){
+    printf("CLIENT AND ACCOUNT\n");
+    sql = "SELECT BANK_CLIENTS.ID, Client_name, Account_number, Account_type, Balance FROM BANK_CLIENTS INNER JOIN BANK_ACCOUNTS ON BANK_CLIENTS.ID = BANK_ACCOUNTS.BANK_Clients_Client_id";
+    rc = sqlite3_exec(db, sql, callback, 0, &err_msg);
+    
+}
 
 
 
