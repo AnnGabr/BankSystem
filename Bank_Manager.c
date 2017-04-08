@@ -27,7 +27,6 @@ void openDB(){
         fprintf(stderr, "Cannot open database: %s\n",
                 sqlite3_errmsg(db));
         sqlite3_close(db);
-        
         exit(1);
     }
 
