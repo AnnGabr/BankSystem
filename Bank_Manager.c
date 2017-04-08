@@ -77,6 +77,16 @@ void credit(int ID, int sum){
     sqlite3_step(res) ;
     sqlite3_finalize(res);
 }
+void debit(int ID, int sum){
+    sql = "UPDATE BANK_ACCOUNTS SET Balance = Balance - ? where ID = ?";
+    rc = sqlite3_prepare_v2(db, sql, -1, &res, 0);
+    
+    sqlite3_bind_int(res, 1, sum);
+    sqlite3_bind_int(res, 2, ID);
+    sqlite3_step(res) ;
+    sqlite3_finalize(res);
+}
+
 
 
 
