@@ -59,6 +59,15 @@ int verification (char* login, char* password){
     }
     return -1;
 }
+int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+    NotUsed = 0;
+    for (int i = 0; i < argc; i++) {
+        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+    }
+    printf("\n");
+    return 0;
+}
+
 
 
 
