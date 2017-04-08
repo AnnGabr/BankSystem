@@ -133,6 +133,27 @@ void addNewClient(char* name, char* phone, char* address, char* email, int bank_
     sqlite3_step(res);
     sqlite3_finalize(res);
 }
+void printClientAndAccounts(int ID){
+    printf("CLIENT AND ACCOUNT\n");
+    sql = "SELECT BANK_CLIENTS.ID, Client_name, Account_number, Account_type, Balance FROM BANK_CLIENTS INNER JOIN BANK_ACCOUNTS ON BANK_CLIENTS.ID = BANK_ACCOUNTS.BANK_Clients_Client_id WHERE BANK_CLIENTS.ID = ?";
+    rc = sqlite3_prepare_v2(db, sql, -1, &res, 0);
+    if (rc == SQLITE_OK)
+        sqlite3_bind_int(res, 1, ID);
+    else
+        fprintf(stderr, "Failed to execute statement: %s\n", sqlite3_errmsg(db));
+    
+    while (sqlite3_step(res) == SQLITE_ROW){
+        printf("%d ", sqlite3_column_int(res, 0));
+        printf("%s ", sqlite3_column_text(res, 1));
+        printf("%s ", sqlite3_column_text(res, 2));
+        printf("%s ", sqlite3_column_text(res, 3));
+        printf("%d ", sqlite3_column_int(res, 4));
+        
+        printf("\n");
+    }
+    
+    sqlite3_finalize(res);
+}
 
 
 
