@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "Bank_Manager.h"
 #include "Operator.h"
 
 void startOperatorQuery() {
@@ -12,11 +12,6 @@ void startOperatorQuery() {
 		getchar();
 
 		switch (option) {
-		case 'b': {
-			double balance = getBalance();
-			printf("current balance: %f\n", balance);
-			break;
-		}
 		case 'c':
 			makeCredit();
 			break;
@@ -37,26 +32,43 @@ void startOperatorQuery() {
 
 void printOperatorOptions() {
 	printf("Choose option:\n");
-	printf("c - credit\nd - debit\nb - balance\ns - show accounts info\ne - exit\n");
+	printf("c - credit\nd - debit\ns - show accounts info\ne - exit\n");
 }
 
 void makeDebit(){
-	printf("debit");
-	//TODO
+    int id, sum;
+    printf("Enter client id:\n");
+    scanf("%d", &id);
+    getchar();
+    printf("Enter debit sum:\n");
+    scanf("%d", &sum);
+    getchar();
+    debit(id, sum);
 }
 
 void makeCredit(){
-	printf("credit");
-	//TODO
+    int id, sum;
+    printf("Enter client id:\n");
+    scanf("%d", &id);
+    getchar();
+    printf("Enter credit sum:\n");
+    scanf("%d", &sum);
+    getchar();
+    credit(id, sum);
 }
 
-double getBalance(){
-	printf("balance");
-	double balance = 0.0;
-	//TODO
-	return balance;
+void getBalance(){
+	
 }
 
 void showAccInfo() {
-	//TODO
+    int id;
+    printf("Enter client id:\n");
+    scanf("%d", &id);
+    printClientAndAccounts(id);
 }
+
+
+
+
+
