@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "Bank_Manager.h"
 #include "Admin.h"
 
 void startAdminQuery() {
@@ -39,20 +39,34 @@ void printAdminOptions() {
 }
 
 void printCommInfo() {
-	printf("Common info\n");
-	//TODO
+    clientAndAccounts();
 }
 
 void printAccInfo() {
-	printf("Accounts info\n");
-	//TODO
+    printAllAccounts();
 }
 
 void printClientsInfo() {
-	printf("Clients info\n");
-	//TODO
+    printAllClients();
 }
 
 void addClient() {
-	printf("add client\n");
+    char* name, *phone, *address, *email;
+    int bank_user;
+    printf("Enter name: ");
+    scanf("%s", name);
+    getchar();
+    printf("Enter phone: ");
+    scanf("%s", phone);
+    getchar();
+    printf("Enter address: ");
+    scanf("%s", address);
+    getchar();
+    printf("Enter email: ");
+    scanf("%s", email);
+    getchar();
+    printf("Enter bank user id: ");
+    scanf("%d", &bank_user);
+    getchar();
+    addNewClient(name, phone, address, email, bank_user);
 }
