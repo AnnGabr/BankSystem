@@ -121,6 +121,18 @@ void printAllUsers(){
         exit(0);
     }
 }
+void addNewClient(char* name, char* phone, char* address, char* email, int bank_user_id){
+    printf("ADDING NEW CLIENT\n");
+    sql = "INSERT INTO BANK_CLIENTS (Client_name, Phone_number, Address, Email, BANK_USERS_ID) VALUES (?, ?, ?, ?, ?)";
+    rc = sqlite3_prepare_v2(db, sql, -1, &res, 0);
+    sqlite3_bind_text(res, 1, name, (int)strlen(name), SQLITE_STATIC);
+    sqlite3_bind_text(res, 2, phone, (int)strlen(phone), SQLITE_STATIC);
+    sqlite3_bind_text(res, 3, address, (int)strlen(address), SQLITE_STATIC);
+    sqlite3_bind_text(res, 4, email, (int)strlen(email), SQLITE_STATIC);
+    sqlite3_bind_int(res, 5, bank_user_id);
+    sqlite3_step(res);
+    sqlite3_finalize(res);
+}
 
 
 
