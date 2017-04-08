@@ -108,6 +108,17 @@ void printAllClients(){
         exit(0);
     }
 }
+void printAllUsers(){
+    sql = "SELECT * FROM BANK_USERS";
+    rc = sqlite3_exec(db, sql, callback, 0, &err_msg);
+    if (rc != SQLITE_OK){
+        fprintf(stderr, "Failed to select data\n");
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+        sqlite3_free(err_msg);
+        sqlite3_close(db);
+        exit(0);
+    }
+}
 
 
 
